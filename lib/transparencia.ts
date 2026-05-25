@@ -10,7 +10,7 @@ export type TransparencyCategory = {
 export const transparencyIntro = {
   title: "Portal de Transparência",
   description:
-    "Consulta pública de documentos de contratações publicados pelas entidades que utilizam o IntegraPNCP, conforme a Lei nº 14.133/2021.",
+    "Consulta pública de documentos de contratações publicados pelas entidades, conforme a Lei nº 14.133/2021.",
 };
 
 export const transparencyCategories: TransparencyCategory[] = [
