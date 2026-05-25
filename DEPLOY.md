@@ -82,16 +82,20 @@ A cada push em `main`, o GitHub Actions:
 2. Executa `npm run build` (gera pasta `out/`)
 3. Publica no GitHub Pages
 
-### URL temporária vs domínio customizado
+### URLs suportadas (mesmo build)
 
-A URL `https://tiobel-cti.github.io/webpage-integrapncp/` exige o prefixo `/webpage-integrapncp` nos assets (CSS, JS). Por isso o workflow usa `NEXT_PUBLIC_BASE_PATH: /webpage-integrapncp`.
+O script `scripts/patch-static-export.mjs` roda após o build e:
 
-**Antes de ativar `www.integrapncp.com.br`**, remova a linha `NEXT_PUBLIC_BASE_PATH` de `.github/workflows/deploy.yml` e faça um novo push. O domínio customizado é servido na raiz (`/`) e quebra se o `basePath` estiver ativo.
+1. Detecta automaticamente se o site está em `github.io/webpage-integrapncp` ou no domínio customizado
+2. Ajusta a tag `<base>` e os caminhos dos assets (CSS, JS, imagens)
 
-| Fase | `NEXT_PUBLIC_BASE_PATH` | URL que funciona |
-|------|-------------------------|------------------|
-| Testes (agora) | `/webpage-integrapncp` | `tiobel-cti.github.io/webpage-integrapncp/` |
-| Produção (DNS ativo) | *(remover)* | `www.integrapncp.com.br` |
+Não é necessário alterar nada no workflow ao migrar para `www.integrapncp.com.br`.
+
+| URL | Funciona |
+|-----|----------|
+| `https://tiobel-cti.github.io/webpage-integrapncp/` | Sim |
+| `https://www.integrapncp.com.br` | Sim |
+| `https://integrapncp.com.br` | Sim (com registros A no apex) |
 
 ## Checklist final
 
@@ -109,5 +113,4 @@ A URL `https://tiobel-cti.github.io/webpage-integrapncp/` exige o prefixo `/webp
 | Site 404 no domínio | Verificar deploy Actions; confirmar `public/CNAME` no repositório |
 | HTTPS indisponível | Aguardar DNS validado antes de Enforce HTTPS |
 | Formulário não envia | Verificar secret `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` no GitHub |
-| CSS/layout quebrado na URL temporária | Confirmar `NEXT_PUBLIC_BASE_PATH: /webpage-integrapncp` no workflow |
-| CSS/layout quebrado no domínio customizado | Remover `NEXT_PUBLIC_BASE_PATH` do workflow e redeploy |
+| CSS ou imagens quebrados | Hard refresh (`Cmd+Shift+R`); confirmar deploy recente com script `patch-static-export` |
