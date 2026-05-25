@@ -54,10 +54,6 @@ export function TransparencyCategoryPage({
           </h1>
           <p className="mt-3 text-slate-600">{category.description}</p>
 
-          <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-            {transparencyIntro.disclaimer}
-          </div>
-
           <div className="mt-8">
             <h2 className="text-lg font-semibold text-slate-900">
               Documentos disponíveis
@@ -72,7 +68,6 @@ export function TransparencyCategoryPage({
                     <p className="font-medium text-slate-900">
                       {category.pdfTitle}
                     </p>
-                    <p className="mt-1 text-sm text-slate-500">PDF — exemplo ilustrativo</p>
                   </div>
                 </div>
                 <a
@@ -125,10 +120,6 @@ export function TransparencyIndexPage() {
           {transparencyIntro.description}
         </p>
 
-        <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          {transparencyIntro.disclaimer}
-        </div>
-
         <div className="mt-8 grid gap-4">
           {transparencyCategories.map((category) => (
             <Link
@@ -145,22 +136,6 @@ export function TransparencyIndexPage() {
               <p className="mt-2 text-sm text-slate-600">{category.description}</p>
             </Link>
           ))}
-        </div>
-
-        <div className="mt-10 rounded-xl border border-slate-200 bg-white p-5">
-          <h2 className="font-semibold text-slate-900">
-            URLs para credenciamento PNCP
-          </h2>
-          <p className="mt-2 text-sm text-slate-600">
-            Use os endereços abaixo no formulário de cadastro da plataforma:
-          </p>
-          <ul className="mt-4 space-y-2 text-sm">
-            {transparencyCategories.map((category) => (
-              <li key={category.slug} className="break-all font-mono text-slate-700">
-                {transparencyIntro.baseUrl}/transparencia/{category.slug}/
-              </li>
-            ))}
-          </ul>
         </div>
       </main>
     </div>
