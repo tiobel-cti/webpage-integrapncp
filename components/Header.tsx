@@ -1,8 +1,35 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navLinks, siteConfig } from "@/lib/content";
+
+function NavItem({
+  href,
+  label,
+  className,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  className: string;
+  onClick?: () => void;
+}) {
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={className} onClick={onClick}>
+        {label}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} className={className} onClick={onClick}>
+      {label}
+    </a>
+  );
+}
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -21,13 +48,12 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a
+            <NavItem
               key={link.href}
               href={link.href}
+              label={link.label}
               className="text-sm font-medium text-slate-600 transition-colors hover:text-primary"
-            >
-              {link.label}
-            </a>
+            />
           ))}
           <a
             href="#contato"
@@ -51,14 +77,13 @@ export function Header() {
         <nav className="border-t border-slate-200/60 bg-white px-4 py-4 md:hidden">
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
-              <a
+              <NavItem
                 key={link.href}
                 href={link.href}
+                label={link.label}
                 onClick={handleNavClick}
                 className="text-base font-medium text-slate-700 hover:text-primary"
-              >
-                {link.label}
-              </a>
+              />
             ))}
             <a
               href="#contato"

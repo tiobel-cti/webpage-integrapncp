@@ -10,6 +10,7 @@ export const navLinks = [
   { href: "#quem-somos", label: "Quem somos" },
   { href: "#nosso-sistema", label: "Nosso sistema" },
   { href: "#contato", label: "Entre em contato" },
+  { href: "/transparencia/", label: "Transparência" },
 ];
 
 export const heroContent = {

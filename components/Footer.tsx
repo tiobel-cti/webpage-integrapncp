@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { footerContent, navLinks, siteConfig } from "@/lib/content";
 
 export function Footer() {
@@ -13,15 +14,25 @@ export function Footer() {
           </div>
 
           <nav className="flex flex-wrap justify-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.href.startsWith("/") ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm transition-colors hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm transition-colors hover:text-white"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
           </nav>
         </div>
 
