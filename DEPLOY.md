@@ -82,6 +82,17 @@ A cada push em `main`, o GitHub Actions:
 2. Executa `npm run build` (gera pasta `out/`)
 3. Publica no GitHub Pages
 
+### URL temporária vs domínio customizado
+
+A URL `https://tiobel-cti.github.io/webpage-integrapncp/` exige o prefixo `/webpage-integrapncp` nos assets (CSS, JS). Por isso o workflow usa `NEXT_PUBLIC_BASE_PATH: /webpage-integrapncp`.
+
+**Antes de ativar `www.integrapncp.com.br`**, remova a linha `NEXT_PUBLIC_BASE_PATH` de `.github/workflows/deploy.yml` e faça um novo push. O domínio customizado é servido na raiz (`/`) e quebra se o `basePath` estiver ativo.
+
+| Fase | `NEXT_PUBLIC_BASE_PATH` | URL que funciona |
+|------|-------------------------|------------------|
+| Testes (agora) | `/webpage-integrapncp` | `tiobel-cti.github.io/webpage-integrapncp/` |
+| Produção (DNS ativo) | *(remover)* | `www.integrapncp.com.br` |
+
 ## Checklist final
 
 - [ ] GitHub Actions verde no último deploy
@@ -98,3 +109,5 @@ A cada push em `main`, o GitHub Actions:
 | Site 404 no domínio | Verificar deploy Actions; confirmar `public/CNAME` no repositório |
 | HTTPS indisponível | Aguardar DNS validado antes de Enforce HTTPS |
 | Formulário não envia | Verificar secret `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` no GitHub |
+| CSS/layout quebrado na URL temporária | Confirmar `NEXT_PUBLIC_BASE_PATH: /webpage-integrapncp` no workflow |
+| CSS/layout quebrado no domínio customizado | Remover `NEXT_PUBLIC_BASE_PATH` do workflow e redeploy |

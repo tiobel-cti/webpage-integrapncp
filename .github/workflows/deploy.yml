@@ -30,6 +30,8 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY }}
+          # Remover esta linha ao ativar www.integrapncp.com.br (domínio na raiz)
+          NEXT_PUBLIC_BASE_PATH: /webpage-integrapncp
 
       - uses: actions/upload-pages-artifact@v3
         with:
