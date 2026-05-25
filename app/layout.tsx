@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { siteConfig } from "@/lib/content";
+import { assetPath } from "@/lib/paths";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/hero-integration.png",
+        url: assetPath("/images/hero-integration.png"),
         width: 1200,
         height: 630,
         alt: "IntegraPNCP - Integração com o Portal Nacional de Contratações Públicas",

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { aboutContent } from "@/lib/content";
+import { assetPath } from "@/lib/paths";
 import { AnimateOnScroll } from "./AnimateOnScroll";
 
 export function About() {
@@ -10,7 +11,7 @@ export function About() {
         <AnimateOnScroll>
           <div className="relative order-2 lg:order-1">
             <Image
-              src="/images/about-public-sector.png"
+              src={assetPath("/images/about-public-sector.png")}
               alt="Equipe IntegraPNCP trabalhando em soluções para o setor público"
               width={640}
               height={480}

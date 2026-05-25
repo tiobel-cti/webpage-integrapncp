@@ -8,6 +8,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { systemContent } from "@/lib/content";
+import { assetPath } from "@/lib/paths";
 import { AnimateOnScroll } from "./AnimateOnScroll";
 
 const benefitIcons = [Banknote, ClipboardList, Send, Eye, Workflow, PenLine];
@@ -59,7 +60,7 @@ export function System() {
               ))}
             </div>
             <Image
-              src="/images/system-dashboard.png"
+              src={assetPath("/images/system-dashboard.png")}
               alt="Painel de gestão de contratações públicas IntegraPNCP"
               width={640}
               height={480}

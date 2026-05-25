@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { heroContent } from "@/lib/content";
+import { assetPath } from "@/lib/paths";
 import { AnimateOnScroll } from "./AnimateOnScroll";
 
 export function Hero() {
@@ -40,7 +41,7 @@ export function Hero() {
           <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-primary/20 to-accent/20 blur-2xl" />
             <Image
-              src="/images/hero-integration.png"
+              src={assetPath("/images/hero-integration.png")}
               alt="Integração de entidades públicas com o Portal PNCP"
               width={640}
               height={480}
